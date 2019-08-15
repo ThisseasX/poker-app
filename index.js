@@ -1,4 +1,4 @@
-const { groupByRank, groupBySuit, getHighCard } = require('./utils');
+const { parseHand } = require('./utils');
 const {
   isRoyalFlush,
   isStraightFlush,
@@ -12,24 +12,7 @@ const {
 } = require('./hand-rankings');
 
 const rate = hand => {
-  if (hand.length !== 5) {
-    throw Error('Invalid hand length');
-  }
-
-  if (hand.some(card => card.rank < 2 || card.rank > 14)) {
-    throw Error('Invalid card rank');
-  }
-
-  const suits = Object.entries(groupBySuit(hand));
-  const ranks = Object.entries(groupByRank(hand));
-  const highCard = getHighCard(hand);
-
-  const handStatistics = {
-    hand,
-    suits,
-    ranks,
-    highCard,
-  };
+  const handStatistics = parseHand(hand);
 
   switch (true) {
     case isRoyalFlush(handStatistics):
