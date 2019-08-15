@@ -11,20 +11,12 @@ const {
   isPair,
 } = require('./hand-rankings');
 
-const hand = [
-  { id: 22, rank: 2, suit: 1 },
-  { id: 51, rank: 8, suit: 1 },
-  { id: 7, rank: 6, suit: 1 },
-  { id: 11, rank: 3, suit: 2 },
-  { id: 37, rank: 4, suit: 1 },
-];
-
 const rate = hand => {
   if (hand.length !== 5) {
     throw Error('Invalid hand length');
   }
 
-  if (hand.some(x => x.rank < 2 || x.rank > 14)) {
+  if (hand.some(card => card.rank < 2 || card.rank > 14)) {
     throw Error('Invalid card rank');
   }
 
@@ -41,39 +33,26 @@ const rate = hand => {
 
   switch (true) {
     case isRoyalFlush(handStatistics):
-      console.log('ROYAL_FLUSH');
-      break;
+      return 'ROYAL_FLUSH';
     case isStraightFlush(handStatistics):
-      console.log('STRAIGHT_FLUSH');
-      break;
+      return 'STRAIGHT_FLUSH';
     case isFourOfAKind(handStatistics):
-      console.log('FOUR_OF_A_KIND');
-      break;
+      return 'FOUR_OF_A_KIND';
     case isFullHouse(handStatistics):
-      console.log('FULL_HOUSE');
-      break;
+      return 'FULL_HOUSE';
     case isFlush(handStatistics):
-      console.log('FLUSH');
-      break;
+      return 'FLUSH';
     case isStraight(handStatistics):
-      console.log('STRAIGHT');
-      break;
+      return 'STRAIGHT';
     case isThreeOfAKind(handStatistics):
-      console.log('THREE_OF_A_KIND');
-      break;
+      return 'THREE_OF_A_KIND';
     case isTwoPair(handStatistics):
-      console.log('TWO_PAIR');
-      break;
+      return 'TWO_PAIR';
     case isPair(handStatistics):
-      console.log('PAIR');
-      break;
+      return 'PAIR';
     default:
-      console.log('HIGH_CARD');
+      return 'HIGH_CARD';
   }
-
-  console.log(highCard);
 };
 
-rate(hand);
-
-module.exports = rate;
+module.exports = { rate };

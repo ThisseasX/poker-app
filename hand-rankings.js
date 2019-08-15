@@ -1,9 +1,3 @@
-const validateSequence = cards =>
-  cards
-    .map(x => x.rank)
-    .sort((a, b) => a - b)
-    .every((_, i, ranks) => i === 0 || ranks[i] - 1 === ranks[i - 1]);
-
 const isRoyalFlush = stats =>
   isFlush(stats) && isStraight(stats) && stats.highCard.rank === 14;
 
@@ -16,7 +10,11 @@ const isFullHouse = ({ ranks }) => ranks.length == 2;
 
 const isFlush = ({ suits }) => suits.length === 1;
 
-const isStraight = ({ hand }) => validateSequence(hand);
+const isStraight = ({ hand }) =>
+  hand
+    .map(card => card.rank)
+    .sort((a, b) => a - b)
+    .every((_, i, ranks) => i === 0 || ranks[i] - 1 === ranks[i - 1]);
 
 const isThreeOfAKind = ({ ranks }) =>
   ranks.some(([_, cardsPerRank]) => cardsPerRank.length === 3);
