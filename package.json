@@ -3,17 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThisseasX/poker-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "mocha-each": "^2.0.1",
-    "rxjs": "^6.5.2"
+  "bugs": {
+    "url": "https://github.com/ThisseasX/poker-app/issues"
   },
+  "homepage": "https://github.com/ThisseasX/poker-app#readme",
   "devDependencies": {
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "mocha-each": "^2.0.1"
   }
 }

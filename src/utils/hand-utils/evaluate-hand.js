@@ -1,4 +1,3 @@
-const { parseHand } = require('./utils');
 const {
   isRoyalFlush,
   isStraightFlush,
@@ -10,8 +9,9 @@ const {
   isTwoPair,
   isPair,
 } = require('./hand-rankings');
+const { parseHand } = require('./hand-utils');
 
-const rate = hand => {
+const evaluateHand = hand => {
   const handStatistics = parseHand(hand);
 
   switch (true) {
@@ -38,4 +38,6 @@ const rate = hand => {
   }
 };
 
-module.exports = { rate };
+module.exports = {
+  evaluateHand,
+};
