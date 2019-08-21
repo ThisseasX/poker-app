@@ -1,5 +1,5 @@
 const isRoyalFlush = stats =>
-  isStraight(stats) && isFlush(stats) && stats.highCard.rank === 14;
+  isStraightFlush(stats) && stats.highCard.rank === 14;
 
 const isStraightFlush = stats => isStraight(stats) && isFlush(stats);
 
