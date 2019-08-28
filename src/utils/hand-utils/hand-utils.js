@@ -1,4 +1,4 @@
-const { groupBy } = require('../generic-utils');
+const { groupBy } = require('lodash');
 
 const groupBySuit = hand => groupBy(hand, 'suit');
 const groupByRank = hand => groupBy(hand, 'rank');

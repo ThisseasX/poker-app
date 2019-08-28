@@ -4,7 +4,7 @@ const isRoyalFlush = stats =>
 const isStraightFlush = stats => isStraight(stats) && isFlush(stats);
 
 const isFourOfAKind = ({ ranks }) =>
-  ranks.some(([_, cardsPerRank]) => cardsPerRank.length >= 4);
+  ranks.some(([_, cardsPerRank]) => cardsPerRank.length == 4);
 
 const isFullHouse = ({ ranks }) => ranks.length == 2;
 
@@ -23,6 +23,8 @@ const isTwoPair = ({ ranks }) => ranks.length == 3;
 
 const isPair = ({ ranks }) => ranks.length == 4;
 
+const isHighCard = () => true;
+
 module.exports = {
   isRoyalFlush,
   isStraightFlush,
@@ -33,4 +35,5 @@ module.exports = {
   isThreeOfAKind,
   isTwoPair,
   isPair,
+  isHighCard,
 };
