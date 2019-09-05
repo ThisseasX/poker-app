@@ -2,10 +2,9 @@ const {
   flow,
   groupBy,
   sortBy,
-  last,
-  some,
-  keys,
-  entries,
+  find,
+  isUndefined,
+  negate,
   map,
   has,
   identity,
@@ -17,6 +16,24 @@ class Hand {
     this.hand = hand;
   }
 
+  hasSameSuit(n) {
+    return flow(
+      map('suit'),
+      groupBy(identity),
+      groupBy('length'),
+      has(n),
+    )(this.hand);
+  }
+
+  hasSameRank(n) {
+    return flow(
+      map('rank'),
+      groupBy(identity),
+      groupBy('length'),
+      has(n),
+    )(this.hand);
+  }
+
   hasInARow(n) {
     return flow(
       map('rank'),
@@ -24,7 +41,14 @@ class Hand {
       mapWithIndex((x, i) => x - i),
       groupBy(identity),
       groupBy('length'),
-      has(n)
+      has(n),
+    )(this.hand);
+  }
+
+  hasAce() {
+    return flow(
+      find(card => card.rank === 14),
+      negate(isUndefined),
     )(this.hand);
   }
 }
@@ -37,4 +61,4 @@ const h = new Hand([
   { id: 13, rank: 14, suit: 1 },
 ]);
 
-console.log(h.hasInARow(5));
+console.log(h.hasAce());
