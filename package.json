@@ -22,9 +22,12 @@
   "homepage": "https://github.com/ThisseasX/poker-app#readme",
   "devDependencies": {
     "mocha": "^6.2.0",
-    "mocha-each": "^2.0.1"
+    "mocha-each": "^2.0.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.6.2"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.138",
     "lodash": "^4.17.15"
   }
 }
