@@ -1,4 +1,4 @@
-const { flow, entries, head, find } = require('lodash/fp');
+const { flow, entries, first, find } = require('lodash/fp');
 
 const rankings = {
   ROYAL_FLUSH: hand => hand.hasInARow(5) && hand.hasSameSuit(5) && hand.hasAce(),
@@ -17,7 +17,7 @@ const evaluateHand = hand =>
   flow(
     entries,
     find(([_, ranking]) => ranking(hand)),
-    head,
+    first,
   )(rankings);
 
 module.exports = { evaluateHand };

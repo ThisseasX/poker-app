@@ -2,9 +2,7 @@ const {
   flow,
   groupBy,
   sortBy,
-  find,
-  isUndefined,
-  negate,
+  some,
   map,
   identity,
   keys,
@@ -16,8 +14,8 @@ const {
   lte,
 } = require('lodash/fp');
 
-// @ts-ignore
 const mapWithIndex = map.convert({ cap: false });
+
 const maxInARow = cards =>
   flow(
     map('rank'),
@@ -32,6 +30,13 @@ const maxInARow = cards =>
     last,
   )(cards);
 
+const hasSame = (n, group) => {
+  return flow(
+    get([n, 'length']),
+    defaultTo(0),
+  )(group);
+}
+
 class Hand {
   constructor(cards) {
     this.cards = cards;
@@ -43,28 +48,19 @@ class Hand {
   }
 
   hasSameRank(n) {
-    return flow(
-      get([n, 'length']),
-      defaultTo(0),
-    )(this.rankTimes);
+    return hasSame(n, this.rankTimes);
   }
 
   hasSameSuit(n) {
-    return flow(
-      get([n, 'length']),
-      defaultTo(0),
-    )(this.suitTimes);
+    return hasSame(n, this.suitTimes);
   }
 
   hasInARow(n) {
-    return lte(n)(this.ranksInARow);
+    return lte(n, this.ranksInARow);
   }
 
   hasAce() {
-    return flow(
-      find(card => card.rank === 14),
-      negate(isUndefined),
-    )(this.cards);
+    return some(card => card.rank === 14, this.cards);
   }
 }
 
