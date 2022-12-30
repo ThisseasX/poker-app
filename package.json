@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ThisseasX/poker-app#readme",
   "devDependencies": {
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "mocha-each": "^2.0.1"
   },
   "dependencies": {
